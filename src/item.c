@@ -23,10 +23,6 @@ EWRAM_DATA struct BagPocket gBagPockets[POCKETS_COUNT] = {0};
 #include "data/text/item_descriptions.h"
 #include "data/items.h"
 
-void ItemId_GetHoldEffectParam_Script()
-{
-    VarSet(VAR_RESULT, ItemId_GetHoldEffectParam(VarGet(VAR_0x8004)));
-}
 
 static u16 GetBagItemQuantity(u16 *quantity)
 {
@@ -900,6 +896,11 @@ u8 GetItemHoldEffect(u16 itemId)
 u8 GetItemHoldEffectParam(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].holdEffectParam;
+}
+
+void ItemId_GetHoldEffectParam_Script()
+{
+    VarSet(VAR_RESULT, GetItemHoldEffectParam(VarGet(VAR_0x8004)));
 }
 
 const u8 *GetItemDescription(u16 itemId)
