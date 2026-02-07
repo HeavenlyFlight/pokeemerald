@@ -439,19 +439,19 @@ static void RemoveExtraStartMenuWindows(void)
 {
     if (GetSafariZoneFlag())
     {
-        sub_8198070(sSafariBallsWindowId, FALSE);
+        ClearStdWindowAndFrameToTransparent(sSafariBallsWindowId, FALSE);
         CopyWindowToVram(sSafariBallsWindowId, 2);
         RemoveWindow(sSafariBallsWindowId);
     }else if (InBattlePyramid()) //Antes eran dos if separados
     {
-        sub_8198070(sBattlePyramidFloorWindowId, FALSE);
+        ClearStdWindowAndFrameToTransparent(sBattlePyramidFloorWindowId, FALSE);
         RemoveWindow(sBattlePyramidFloorWindowId);
     }
-	else{ //Borra de la pantalla la venta auxiliar de la hora
-        sub_8198070(sSafariBallsWindowId, FALSE);
-        RemoveWindow(sSafariBallsWindowId);	
-		
-	}
+    else{ //Borra de la pantalla la venta auxiliar de la hora
+        ClearStdWindowAndFrameToTransparent(sSafariBallsWindowId, FALSE);
+        RemoveWindow(sSafariBallsWindowId);   
+        
+    }
 }
 
 static bool32 PrintStartMenuActions(s8 *pIndex, u32 count)
@@ -1449,8 +1449,8 @@ static void ShowStartMenuExtraWindow(void) // Función que carga una ventana aux
 {	
     sSafariBallsWindowId = AddWindow(&sStartMenuWindowTemplate);
     PutWindowTilemap(sSafariBallsWindowId);
-    NewMenuHelpers_DrawStdWindowFrame(sSafariBallsWindowId, FALSE);
-	FormatDecimalTimeWOSeconds(gStringVar4, Rtc_GetCurrentHour(), Rtc_GetCurrentMinute());                                     
-    AddTextPrinterParameterized(sSafariBallsWindowId, 1, gStringVar4, 0, 1, 0xFF, NULL); 
+    DrawStdWindowFrame(sSafariBallsWindowId, FALSE);
+    FormatDecimalTimeWOSeconds(gStringVar4, Rtc_GetCurrentHour(), Rtc_GetCurrentMinute());                                     
+    AddTextPrinterParameterized(sSafariBallsWindowId, 1, gStringVar4, 0, 1, 0xFF, NULL);
     CopyWindowToVram(sSafariBallsWindowId, 2);
 }
